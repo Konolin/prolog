@@ -1,3 +1,45 @@
 % Ex 1
 last([X], X).
 last([_ | Tail], Result) :- last(Tail, Result).
+
+
+% Ex 2
+second_last_element([X, _], X).
+second_last_element([_|T], X) :-
+    second_last_element(T, X).
+
+
+% Ex 3
+kth_element([X|_], 1, X).
+kth_element([_|T], K, X) :-
+    K > 1,
+    K1 is K - 1,
+    kth_element(T, K1, X).
+
+
+% Ex 4
+list_length([], 0).
+list_length([_|T], N) :-
+    list_length(T, N1),
+    N is N1 + 1.
+
+
+% Ex 5
+reverse_list(List, Reversed) :-
+    reverse_list_helper(List, [], Reversed).
+
+reverse_list_helper([], Acc, Acc).
+reverse_list_helper([H|T], Acc, Reversed) :-
+    reverse_list_helper(T, [H|Acc], Reversed).
+
+
+% Ex 6
+is_palindrome(List) :-
+    reverse_list(List, Reversed),
+    List = Reversed.
+
+
+% Ex 7
+duplicate_elements([], []).
+duplicate_elements([H|T], [H, H|DuplicatedTail]) :-
+    duplicate_elements(T, DuplicatedTail).
