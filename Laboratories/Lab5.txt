@@ -1,1 +1,18 @@
 % Ex 1
+difference([], _, []).
+
+difference([H|T], L, Result) :-
+    member(H, L),
+    !,
+    difference(T, L, Result).
+
+difference([H|T1], L, [H|Result]) :-
+    difference(T1, L, Result).
+
+difference_complete(L1, L2, Result) :-
+    difference(L1, L2, R1),
+    difference(L2, L1, R2),
+    append(R1, R2, Result).
+
+
+% Ex 2
