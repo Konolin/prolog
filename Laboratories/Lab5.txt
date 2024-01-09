@@ -16,3 +16,12 @@ difference_complete(L1, L2, Result) :-
 
 
 % Ex 2
+union([], L, L).
+
+union([H|T], L2, Result):-
+    member(H, L2),
+    !,
+    union(T, L2, Result).
+
+union([H|T], L2, [H|Result]):-
+    union(T, L2, Result).
